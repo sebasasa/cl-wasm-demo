@@ -1,21 +1,25 @@
-; We are using these to manipulate the DOM
-(defvar *my-div* nil)
 (defun update_html_mouse () 
   (setf (inner-html *my-div*) (format nil "Drawing box at X: ~A | Y: ~A" MOUSEX MOUSEY)))
 
 
 (defun setup ()
-  (initialize_canvas "canvas")
-  ; Create a div that we can write into
+  "Runs once to initialize DOM elements and canvas context."
   (setf *my-div* (js-get-element-by-id [document] "target"))
-)
-
+  (let ((canvas-obj (js-get-element-by-id [document] "canvas")))
+    (setf *ctx* (canvas-get-context canvas-obj "2d")))
+  
+  ;; Listen to mouse changes to update global tracking variables
+  (js-add-event-listener [window] "mousemove"
+                        (lambda-js-callback :null ((event :js-ref))
+                           (setf MOUSEX (get-client-x event))
+                           (setf MOUSEY (get-client-y event)))))
 
 (defun draw ()
   (update_html_mouse)
+  (set-fill "white")
+
   (spawn-particle MOUSEX MOUSEY)
 
-  ; Iterate all particles
   (dotimes (i (length *particles*))
     (let ((p (aref *particles* i)))
       (when p
@@ -27,12 +31,12 @@
         (setf (particle-life p) (- (particle-life p) 0.02))
         
         (if (> (particle-life p) 0.0)
+            ;; Render the square using your new rect function
               (let ((size (round (* 15 (particle-life p)))))
                 (rect (round (particle-x p)) 
                       (round (particle-y p)) 
                       size 
                       size))
-
             ;; Erase from the pool when dead
             (setf (aref *particles* i) nil)))))
   )

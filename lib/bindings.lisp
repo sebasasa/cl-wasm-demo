@@ -4,20 +4,12 @@
     ((self :js-ref) 
      (x :fixnum) (y :fixnum) (w :fixnum) (h :fixnum)))
 
-(defun initialize_mouse () 
-  (js-add-event-listener [window] "mousemove"
-                        (lambda-js-callback :null ((event :js-ref))
-                           (setf MOUSEX (get-client-x event))
-                           (setf MOUSEY (get-client-y event)))
-))
-
-
-(defun initialize_canvas (id)
-  (initialize_mouse)
-  (let ((canvas-obj (js-get-element-by-id [document] id)))
-    (setf *ctx* (canvas-get-context canvas-obj "2d")))
-)
-
+(define-js-accessor (canvas-fill-style :js-expr "fillStyle" :type :string)
+    ((self :js-ref)
+     (style :string)))
 
 (defun rect (x y w h)
   (canvas-fill-rect *ctx* x y w h))
+
+(defun set-fill (color)
+  (setf (canvas-fill-style *ctx*) color))
