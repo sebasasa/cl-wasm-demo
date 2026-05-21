@@ -1,6 +1,7 @@
 {
     "entrypoint": "sketch.lisp",
     "files": [
-        "particle.lisp"
+        "particle.lisp",
+        "ui.lisp"
     ]
 }

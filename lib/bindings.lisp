@@ -1,6 +1,10 @@
-;; --- Processing Bindings ---
+;; --- Quicle Canvas Bindings ---
 
-(define-js-method (canvas-fill-rect :js-expr "fillRect" :type :null)
+(define-js-method (canvas-rect :js-expr "rect_quicle" :type :null)
+    ((self :js-ref) 
+     (x :fixnum) (y :fixnum) (w :fixnum) (h :fixnum)))
+
+(define-js-method (canvas-ellipse :js-expr "ellipse_quicle" :type :null)
     ((self :js-ref) 
      (x :fixnum) (y :fixnum) (w :fixnum) (h :fixnum)))
 
@@ -9,7 +13,10 @@
      (style :string)))
 
 (defun rect (x y w h)
-  (canvas-fill-rect *ctx* x y w h))
+  (canvas-rect *ctx* x y w h))
+
+(defun ellipse (x y w h)
+  (canvas-ellipse *ctx* x y w h))
 
 (defun set-fill (color)
   (setf (canvas-fill-style *ctx*) color))

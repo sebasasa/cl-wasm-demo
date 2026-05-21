@@ -26,16 +26,30 @@
     ((self :js-ref) 
      (context-type :string)))
 
-(define-js-method (canvas-fill-rect :js-expr "fillRect" :type :null)
-    ((self :js-ref) 
-     (x :fixnum) (y :fixnum) (w :fixnum) (h :fixnum)))
-
 ;; --- 3. Animation Loop Extension ---
 (define-js-method (js-request-animation-frame :js-expr "requestAnimationFrame" :type :null)
     ((self :js-ref)
      (callback-fun :js-ref)))
 
+(define-js-method (js-set-interval :js-expr "setInterval" :type :fixnum)
+    ((self :js-ref)
+     (callback-fun :js-ref)
+     (ms :fixnum)))
+
 ;; --- 4. Global State Tracking (Processing Variables) ---
 (defvar MOUSEX 0)
 (defvar MOUSEY 0)
 (defvar *ctx* nil)
+
+
+(defun initialize-mouse () 
+  (js-add-event-listener [window] "mousemove"
+                        (lambda-js-callback :null ((event :js-ref))
+                           (setf MOUSEX (get-client-x event))
+                           (setf MOUSEY (get-client-y event))))
+                           )
+(defun create_canvas (id)
+  (initialize-mouse)
+  (let ((canvas-obj (js-get-element-by-id [document] id)))
+    (setf *ctx* (canvas-get-context canvas-obj "2d"))))
+

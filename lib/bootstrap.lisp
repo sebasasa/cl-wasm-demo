@@ -1,10 +1,8 @@
 (setup)
 
-(labels ((run-loop ()
-           (draw)
-           ;; Request the next frame cleanly
-           (js-request-animation-frame [window] 
-                                       (lambda-js-callback :null ((timestamp :js-ref))
-                                         (run-loop)))))
-  ;; Start the loop
-  (run-loop))
+;; Use setInterval instead of requestAnimationFrame for a more stable loop 
+;; when the browser console is open (prevents 'long task' warnings).
+(js-set-interval [window] 
+                 (lambda-js-callback :null ()
+                   (draw))
+                 16) ;; ~60 FPS
