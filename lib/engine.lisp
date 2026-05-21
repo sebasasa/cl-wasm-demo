@@ -36,7 +36,6 @@
      (callback-fun :js-ref)))
 
 ;; --- 4. Global State Tracking (Processing Variables) ---
-(defvar *mx* 0)
-(defvar *my* 0)
+(defvar MOUSEX 0)
+(defvar MOUSEY 0)
 (defvar *ctx* nil)
-(defvar *my-div* nil)

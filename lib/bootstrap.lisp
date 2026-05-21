@@ -1,6 +1,5 @@
 (setup)
 
-;; We define the recurring frame tick using WECL's native callback macro
 (labels ((run-loop ()
            (draw)
            ;; Request the next frame cleanly
