@@ -14,7 +14,7 @@ static cl_object L2close_window();
 static cl_object L3window_should_close();
 static cl_object L4begin_drawing();
 static cl_object L5end_drawing();
-static cl_object L6run_window();
+static cl_object L6spawn_window();
 static cl_object Cblock;
 #define VM 13
 #define VMtemp 15
@@ -28,10 +28,10 @@ static cl_object Cblock;
 #define compiler_cfuns_size 6
 static const struct ecl_cfunfixed compiler_cfuns[] = {
  /*t,m,narg,padding,name=function-location,block=name-location,entry,entry_fixed,file,file_position*/
-{0,0,3,0,ecl_make_fixnum(7),ecl_make_fixnum(0),(cl_objectfn)L1init_window,NULL,ECL_NIL,ecl_make_fixnum(272)},
-{0,0,0,0,ecl_make_fixnum(8),ecl_make_fixnum(1),(cl_objectfn)L2close_window,NULL,ECL_NIL,ecl_make_fixnum(396)},
-{0,0,0,0,ecl_make_fixnum(9),ecl_make_fixnum(2),(cl_objectfn)L3window_should_close,NULL,ECL_NIL,ecl_make_fixnum(465)},
-{0,0,0,0,ecl_make_fixnum(10),ecl_make_fixnum(3),(cl_objectfn)L4begin_drawing,NULL,ECL_NIL,ecl_make_fixnum(546)},
-{0,0,0,0,ecl_make_fixnum(11),ecl_make_fixnum(4),(cl_objectfn)L5end_drawing,NULL,ECL_NIL,ecl_make_fixnum(617)},
-{0,0,0,0,ecl_make_fixnum(12),ecl_make_fixnum(5),(cl_objectfn)L6run_window,NULL,ECL_NIL,ecl_make_fixnum(708)},
+{0,0,3,0,ecl_make_fixnum(7),ecl_make_fixnum(0),(cl_objectfn)L1init_window,NULL,ECL_NIL,ecl_make_fixnum(234)},
+{0,0,0,0,ecl_make_fixnum(8),ecl_make_fixnum(1),(cl_objectfn)L2close_window,NULL,ECL_NIL,ecl_make_fixnum(360)},
+{0,0,0,0,ecl_make_fixnum(9),ecl_make_fixnum(2),(cl_objectfn)L3window_should_close,NULL,ECL_NIL,ecl_make_fixnum(429)},
+{0,0,0,0,ecl_make_fixnum(10),ecl_make_fixnum(3),(cl_objectfn)L4begin_drawing,NULL,ECL_NIL,ecl_make_fixnum(510)},
+{0,0,0,0,ecl_make_fixnum(11),ecl_make_fixnum(4),(cl_objectfn)L5end_drawing,NULL,ECL_NIL,ecl_make_fixnum(581)},
+{0,0,0,0,ecl_make_fixnum(12),ecl_make_fixnum(5),(cl_objectfn)L6spawn_window,NULL,ECL_NIL,ecl_make_fixnum(648)},
 };

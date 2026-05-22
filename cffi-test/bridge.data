@@ -1,0 +1,11 @@
+static const struct ecl_base_string compiler_data_text1[] = {
+        (int8_t)t_base_string, 0, ecl_aet_bc, 0,
+        ECL_NIL, (cl_index)185, (cl_index)185,
+        (ecl_base_char*)
+"common-lisp-user::call-print-planet 0 \"CL-USER\" \"libcustom.dylib\" (defun common-"
+ "lisp-user::call-print-planet) (#P\"/Users/sebasa/Desktop/Quicle/cl-wasm-demo/cffi"
+ "-test/bridge.lisp\" . 155)" };
+
+static const cl_object compiler_data_text[] = {
+(cl_object)compiler_data_text1,
+NULL};

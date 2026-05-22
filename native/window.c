@@ -1,9 +1,9 @@
 /*      Compiler: ECL 24.5.10                                         */
-/*      Date: 2026/5/21 20:39 (yyyy/mm/dd)                            */
+/*      Date: 2026/5/21 20:52 (yyyy/mm/dd)                            */
 /*      Machine: Darwin 23.0.0 arm64                                  */
-/*      Source: /Users/sebasa/Desktop/Quicle/cl-wasm-demo/src/ffi/window.lisp */
+/*      Source: /Users/sebasa/Desktop/Quicle/cl-wasm-demo/native/window.lisp */
 #include <ecl/ecl-cmp.h>
-#include "src/ffi/window.eclh"
+#include "window.eclh"
 /*      function definition for INIT-WINDOW                           */
 /*      optimize speed 3, debug 0, space 0, safety 2                  */
 static cl_object L1init_window(cl_object v1width, cl_object v2height, cl_object v3title)
@@ -87,9 +87,9 @@ TTL:
   return value0;
  }
 }
-/*      function definition for RUN-WINDOW                            */
+/*      function definition for SPAWN-WINDOW                          */
 /*      optimize speed 3, debug 0, space 0, safety 2                  */
-static cl_object L6run_window()
+static cl_object L6spawn_window()
 {
  cl_object T0;
  cl_object env0 = ECL_NIL;
@@ -113,7 +113,7 @@ L4:;
  }
 }
 
-#include "src/ffi/window.data"
+#include "window.data"
 #ifdef __cplusplus
 extern "C"
 #endif
@@ -132,7 +132,7 @@ ECL_DLLEXPORT void init_fas_CODE(cl_object flag)
  flag->cblock.data_text = compiler_data_text;
  flag->cblock.cfuns_size = compiler_cfuns_size;
  flag->cblock.cfuns = compiler_cfuns;
- flag->cblock.source = ecl_make_constant_base_string("/Users/sebasa/Desktop/Quicle/cl-wasm-demo/src/ffi/window.lisp",-1);
+ flag->cblock.source = ecl_make_constant_base_string("/Users/sebasa/Desktop/Quicle/cl-wasm-demo/native/window.lisp",-1);
  return;}
  #ifdef ECL_DYNAMIC_VV
  VV = Cblock->cblock.data;
@@ -142,11 +142,10 @@ ECL_DLLEXPORT void init_fas_CODE(cl_object flag)
  ECL_DEFINE_SETF_FUNCTIONS
   si_select_package(VVtemp[0]);
  {
-  cl_object T0, T1;
+  cl_object T0;
   cl_object volatile env0 = ECL_NIL;
-  T0 = cl_user_homedir_pathname(0);
-  T1 = cl_merge_pathnames(2, VVtemp[1], T0);
-  si_load_foreign_module(T1);
+  T0 = cl_merge_pathnames(2, VVtemp[1], ecl_symbol_value(ECL_SYM("*DEFAULT-PATHNAME-DEFAULTS*",34)));
+  si_load_foreign_module(T0);
  }
   ecl_function_dispatch(cl_env_copy,ECL_SYM("ANNOTATE",1856))(4, VV[0], ECL_SYM("LOCATION",1862), VVtemp[2], VVtemp[3]) /*  ANNOTATE */;
   ecl_function_dispatch(cl_env_copy,ECL_SYM("ANNOTATE",1856))(4, VV[0], ECL_SYM("LAMBDA-LIST",1000), ECL_NIL, VVtemp[4]) /*  ANNOTATE */;
@@ -165,7 +164,6 @@ ECL_DLLEXPORT void init_fas_CODE(cl_object flag)
   ecl_cmp_defun(VV[11]);                          /*  END-DRAWING     */
   ecl_function_dispatch(cl_env_copy,ECL_SYM("ANNOTATE",1856))(4, VV[5], ECL_SYM("LOCATION",1862), VVtemp[13], VVtemp[14]) /*  ANNOTATE */;
   ecl_function_dispatch(cl_env_copy,ECL_SYM("ANNOTATE",1856))(4, VV[5], ECL_SYM("LAMBDA-LIST",1000), ECL_NIL, ECL_NIL) /*  ANNOTATE */;
-  ecl_cmp_defun(VV[12]);                          /*  RUN-WINDOW      */
-  L6run_window();
-  si_quit(0);
+  ecl_cmp_defun(VV[12]);                          /*  SPAWN-WINDOW    */
+  L6spawn_window();
 }
