@@ -1,4 +1,0 @@
-#!/bin/bash
-# Compile the native sketch into a standalone executable (fas) or just check for errors
-ecl -eval "(compile-file \"main.lisp\")" -eval "(quit)"
-echo "Build check complete."

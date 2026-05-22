@@ -1,0 +1,17 @@
+static const struct ecl_base_string compiler_data_text1[] = {
+        (int8_t)t_base_string, 0, ecl_aet_bc, 0,
+        ECL_NIL, (cl_index)715, (cl_index)715,
+        (ecl_base_char*)
+"common-lisp-user::init-window common-lisp-user::close-window common-lisp-user::w"
+ "indow-should-close common-lisp-user::begin-drawing common-lisp-user::end-drawing"
+ " common-lisp-user::run-window \"Hello Raylib\" 0 0 0 0 0 0 \"CL-USER\" \"raylib-5.0_m"
+ "acos/lib/libraylib.dylib\" (defun common-lisp-user::init-window) (#1=#P\"/Users/se"
+ "basa/Desktop/Quicle/cl-wasm-demo/src/ffi/window.lisp\" . 272) (common-lisp-user::"
+ "width common-lisp-user::height common-lisp-user::title) (defun common-lisp-user:"
+ ":close-window) (#1# . 396) (defun common-lisp-user::window-should-close) (#1# . "
+ "465) (defun common-lisp-user::begin-drawing) (#1# . 546) (defun common-lisp-user"
+ "::end-drawing) (#1# . 617) (defun common-lisp-user::run-window) (#1# . 708)" };
+
+static const cl_object compiler_data_text[] = {
+(cl_object)compiler_data_text1,
+NULL};
