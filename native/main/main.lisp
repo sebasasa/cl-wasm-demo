@@ -15,6 +15,7 @@
 (ffi:clines "extern bool is_key_down(int key);")
 (ffi:clines "extern int get_mouse_x();")
 (ffi:clines "extern int get_mouse_y();")
+(ffi:clines "extern void set_target_fps(int fps);")
 
 ;; Map functions
 (defun init-window (w h title) (ffi:c-inline (w h title) (:int :int :cstring) :void "init_my_window(#0, #1, #2)" :one-liner t))
@@ -31,11 +32,12 @@
 (defun is-key-down (key) (ffi:c-inline (key) (:int) :bool "is_key_down(#0)" :one-liner t))
 (defun get-mouse-x () (ffi:c-inline () () :int "get_mouse_x()" :one-liner t))
 (defun get-mouse-y () (ffi:c-inline () () :int "get_mouse_y()" :one-liner t))
+(defun set-target-fps(fps) (ffi:c-inline (fps) (:int) :void "set_target_fps(#0)" :one-liner t))
 
 ; My plan was to send the top part to a file called "Bindings.lisp" and then do "(load "bidnings.lisp")". But it seems that just does NOT work out
 
 ;; Engine logic
-(load "sketch.lisp")
+(load "sketch/sketch.lisp")
 
 (defun run-engine ()
   (setup)
