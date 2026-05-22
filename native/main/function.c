@@ -22,3 +22,4 @@ void draw_text(const char* t, int x, int y, int sz, unsigned int c) { DrawText(t
 // Input
 bool is_key_down(int key) { return IsKeyDown(key); }
 int get_mouse_x() { return GetMouseX(); }
+int get_mouse_y() { return GetMouseY(); }
