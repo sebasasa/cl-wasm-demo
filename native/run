@@ -1,0 +1,8 @@
+#!/bin/bash
+# Compile everything including bindings and run
+ecl -eval "(compile-file \"bindings.lisp\" :load t)" \
+    -eval "(compile-file \"particle.lisp\" :load t)" \
+    -eval "(compile-file \"ui.lisp\" :load t)" \
+    -eval "(compile-file \"sketch.lisp\" :load t)" \
+    -eval "(compile-file \"main.lisp\" :load t)"
+

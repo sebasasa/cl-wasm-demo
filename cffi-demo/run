@@ -1,0 +1,3 @@
+#!/bin/bash
+cd "$(dirname "$0")"
+ecl -eval '(compile-file "demo.lisp" :load t)'

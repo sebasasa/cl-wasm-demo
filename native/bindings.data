@@ -1,0 +1,22 @@
+static const struct ecl_base_string compiler_data_text1[] = {
+        (int8_t)t_base_string, 0, ecl_aet_bc, 0,
+        ECL_NIL, (cl_index)1042, (cl_index)1042,
+        (ecl_base_char*)
+"common-lisp-user::init-window common-lisp-user::set-target-fps common-lisp-user:"
+ ":window-should-close common-lisp-user::begin-drawing common-lisp-user::end-drawi"
+ "ng common-lisp-user::clear-background common-lisp-user::draw-circle common-lisp-"
+ "user::get-mouse-x common-lisp-user::get-mouse-y 0 0 0 0 0 0 0 0 0 \"libraylib.dyl"
+ "ib\" (defun common-lisp-user::init-window) (#1=#P\"/Users/sebasa/Desktop/Quicle/cl"
+ "-wasm-demo/native/bindings.lisp\" . 180) (common-lisp-user::w common-lisp-user::h"
+ " common-lisp-user::title) (defun common-lisp-user::set-target-fps) (#1# . 330) ("
+ "common-lisp-user::fps) (defun common-lisp-user::window-should-close) (#1# . 428)"
+ " (defun common-lisp-user::begin-drawing) (#1# . 524) (defun common-lisp-user::en"
+ "d-drawing) (#1# . 609) (defun common-lisp-user::clear-background) (#1# . 690) (c"
+ "ommon-lisp-user::color) (defun common-lisp-user::draw-circle) (#1# . 877) (commo"
+ "n-lisp-user::x common-lisp-user::y common-lisp-user::radius) (defun common-lisp-"
+ "user::get-mouse-x) (#1# . 1009) (defun common-lisp-user::get-mouse-y) (#1# . 108"
+ "8)" };
+
+static const cl_object compiler_data_text[] = {
+(cl_object)compiler_data_text1,
+NULL};
