@@ -34,15 +34,7 @@
 (defun get-mouse-y () (ffi:c-inline () () :int "get_mouse_y()" :one-liner t))
 (defun set-target-fps(fps) (ffi:c-inline (fps) (:int) :void "set_target_fps(#0)" :one-liner t))
 
-; My plan was to send the top part to a file called "Bindings.lisp" and then do "(load "bidnings.lisp")". But it seems that just does NOT work out
+(load "main/library.lisp")
+(load "main/bootstrap.lisp")
 
-;; Engine logic
-(load "sketch/sketch.lisp")
 
-(defun run-engine ()
-  (setup)
-  (loop until (window-should-close-p) do
-    (draw))
-  (close-window))
-
-(run-engine)

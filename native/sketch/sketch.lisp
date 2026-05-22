@@ -7,7 +7,8 @@
 
 
 (defun setup ()
-  (init-window 800 450 "Quicle Sketch")
+  ; (init-window 800 450 "Quicle Sketch")
+  (create_canvas "New Sketch")
   (set-target-fps 50)
   )
 
