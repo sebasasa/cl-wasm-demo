@@ -1,12 +1,13 @@
 (defun setup ()
+  (create_canvas 600 400 "canvas")
   (initialize-ui)
-  (create_canvas "canvas")
   )
-
-
+  
 (defun draw ()
   (update-ui)
-  (spawn-particle MOUSEX MOUSEY)
+  (spawn-particle *mousex* *mousey*)
+  
+  (background #x000000FF)
 
   (dotimes (i (length *particles*))
     (let ((p (aref *particles* i)))

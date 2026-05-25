@@ -34,6 +34,24 @@
 (defun get-mouse-y () (ffi:c-inline () () :int "get_mouse_y()" :one-liner t))
 (defun set-target-fps(fps) (ffi:c-inline (fps) (:int) :void "set_target_fps(#0)" :one-liner t))
 
+; Added this one to handle textures
+(ffi:clines "extern void init_global_canvas(int w, int h);")
+(ffi:clines "extern void begin_global_canvas();")
+(ffi:clines "extern void end_global_canvas();")
+(ffi:clines "extern void draw_global_canvas(int x, int y);")
+
+(defun init-global-canvas (w h) 
+  (ffi:c-inline (w h) (:int :int) :void "init_global_canvas(#0, #1)" :one-liner t))
+
+(defun begin-canvas () 
+  (ffi:c-inline () () :void "begin_global_canvas()" :one-liner t))
+
+(defun end-canvas () 
+  (ffi:c-inline () () :void "end_global_canvas()" :one-liner t))
+
+(defun draw-canvas (x y) 
+  (ffi:c-inline (x y) (:int :int) :void "draw_global_canvas(#0, #1)" :one-liner t))
+  
 (load "main/library.lisp")
 (load "main/bootstrap.lisp")
 

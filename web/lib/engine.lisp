@@ -36,20 +36,41 @@
      (callback-fun :js-ref)
      (ms :fixnum)))
 
+
+(define-js-accessor (component-width :js-expr "width" :type :fixnum)
+    ((self :js-ref) 
+     (width :fixnum))) 
+
+(define-js-accessor (component-height :js-expr "height" :type :fixnum)
+    ((self :js-ref) 
+     (width :fixnum))) 
+
+
+
 ;; --- 4. Global State Tracking (Processing Variables) ---
-(defvar MOUSEX 0)
-(defvar MOUSEY 0)
+(defvar *mousex* 0)
+(defvar *mousey* 0)
 (defvar *ctx* nil)
 
 
 (defun initialize-mouse () 
   (js-add-event-listener [window] "mousemove"
                         (lambda-js-callback :null ((event :js-ref))
-                           (setf MOUSEX (get-client-x event))
-                           (setf MOUSEY (get-client-y event))))
+                           (setf *mousex* (get-client-x event))
+                           (setf *mousey* (get-client-y event))))
                            )
-(defun create_canvas (id)
+
+(defvar *width* 0) 
+(defvar *height* 0) 
+
+(defun create_canvas (w h id)
   (initialize-mouse)
   (let ((canvas-obj (js-get-element-by-id [document] id)))
-    (setf *ctx* (canvas-get-context canvas-obj "2d"))))
+    (setf *ctx* (canvas-get-context canvas-obj "2d"))
+    (setf *width* w)
+    (setf *height* h )
+    (setf (component-width canvas-obj) w)
+    (setf (component-height canvas-obj) h)
+    )
+)
 

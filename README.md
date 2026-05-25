@@ -1,3 +1,11 @@
+https://victordibia.com/handtrack.js/#/docs
+ABSOLUTELY add this to Quicle, it would take us SOOOOOO far into being a real deal
+
+https://www.youtube.com/watch?v=vfNHdVbE-l4
+
+
+
+
 # Quicle: Common Lisp WASM Demo
 
 This project demonstrates a **Common Lisp** environment running entirely in the browser using **Web-ECL (Embeddable Common Lisp compiled to WebAssembly)**. It features a modular loading system for Lisp "sketches" and a canvas-based particle system.

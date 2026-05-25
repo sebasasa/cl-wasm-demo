@@ -8,6 +8,7 @@
 
 (function() {
     if (typeof CanvasRenderingContext2D !== 'undefined') {
+        
         // Quicle-style ellipse: ellipse(x, y, width, height)
         CanvasRenderingContext2D.prototype.ellipse_quicle = function(x, y, w, h) {
             this.beginPath();

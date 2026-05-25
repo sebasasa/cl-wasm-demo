@@ -1,3 +1,4 @@
+#include <stdlib.h>
 #include "../include/raylib.h"
 
 // Window & Timing
@@ -25,3 +26,29 @@ int get_mouse_x() { return GetMouseX(); }
 int get_mouse_y() { return GetMouseY(); }
 
 void set_target_fps(int fps) { SetTargetFPS(fps); }
+
+
+
+
+
+
+
+// Added these ones to draw to a texture
+
+static RenderTexture2D global_canvas;
+static bool canvas_initialized = false;
+
+void init_global_canvas(int w, int h) {
+    if (!canvas_initialized) {
+        global_canvas = LoadRenderTexture(w, h);
+        canvas_initialized = true;
+    }
+}
+
+void begin_global_canvas() { BeginTextureMode(global_canvas); }
+void end_global_canvas() { EndTextureMode(); }
+
+void draw_global_canvas(int x, int y) {
+    Rectangle source = { 0, 0, (float)global_canvas.texture.width, -(float)global_canvas.texture.height };
+    DrawTextureRec(global_canvas.texture, source, (Vector2){(float)x, (float)y}, WHITE);
+}
