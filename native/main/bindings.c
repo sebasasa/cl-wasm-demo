@@ -15,6 +15,7 @@ void clear_bg(unsigned int color) { ClearBackground(GetColor(color)); }
 // Drawing: Shapes
 void draw_rect(int x, int y, int w, int h, unsigned int c) { DrawRectangle(x, y, w, h, GetColor(c)); }
 void draw_circle(int x, int y, float r, unsigned int c) { DrawCircle(x, y, r, GetColor(c)); }
+void draw_ellipse(int x, int y, float rx, float ry, unsigned int c) { DrawEllipse(x, y, rx, ry, GetColor(c)); }
 void draw_line(int x1, int y1, int x2, int y2, unsigned int c) { DrawLine(x1, y1, x2, y2, GetColor(c)); }
 
 // Drawing: Text

@@ -4,18 +4,18 @@
  * completely to 'sketch/sketch.lisp' if no manifest is provided.
  */
 async function bootstrapWeclApp() {
-    const manifestName = 'quicle.manifest.json';
+    const targetDir = 'sketch';
+    const manifestName = `${targetDir}/quicle.manifest.json`;
     let pipeline = [];
 
     try {
-        // 1. Attempt to grab the Quicle manifest
+        // 1. Attempt to grab the Quicle manifest from inside the sketch folder
         const manifestResponse = await fetch(manifestName);
         
         if (manifestResponse.ok) {
             // CASE A: Manifest exists! Parse it out.
             const manifest = await manifestResponse.json();
             
-            const targetDir = manifest.dir ? manifest.dir : 'sketch';
             const localFiles = manifest.files || [];
             const entrypoint = manifest.entrypoint || 'sketch.lisp';
             

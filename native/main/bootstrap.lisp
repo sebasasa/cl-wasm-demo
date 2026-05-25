@@ -1,23 +1,50 @@
-; Currently we MANUALLY load the user scripts
-; This file should probably be generated programatically based on the contents of the manifest
-; We could even do that directly with a simple bash script, even directly inside of build.sh
+; Manifest-based loader for native
+(defun load-manifest ()
+  (let* ((dir "sketch")
+         (manifest-path (format nil "~A/quicle.manifest.json" dir))
+         (files '())
+         (entrypoint "sketch.lisp")
+         (manifest-exists (probe-file manifest-path)))
+    
+    (if manifest-exists
+        (progn
+          (format t "Found manifest at ~A~%" manifest-path)
+          ; Very crude JSON-ish parser for our specific manifest format
+          (with-open-file (stream manifest-path)
+            (loop for line = (read-line stream nil)
+                  while line
+                  do (cond 
+                       ((search "\"entrypoint\":" line)
+                        (setf entrypoint (string-trim " \"," (subseq line (+ (search ":" line) 1)))))
+                       ((search ".lisp" line)
+                        (push (string-trim " \"," (subseq line (search "\"" line))) files)))))
+          
+          (setf files (nreverse files))
+          (setf files (remove entrypoint files :test #'string=))
 
-(load "sketch/sketch.lisp")
+          ; Load extra files from manifest
+          (dolist (f files)
+            (let ((path (format nil "~A/~A" dir f)))
+              (format t "Loading ~A...~%" path)
+              (load path))))
+        
+        ; Fallback: No manifest, just load sketch.lisp
+        (progn
+          (format t "No manifest found at ~A. Falling back to default sketch/sketch.lisp~%" manifest-path)
+          (setf entrypoint "sketch.lisp")))
+    
+    ; Always load entrypoint
+    (let ((path (format nil "~A/~A" dir entrypoint)))
+      (format t "Loading entrypoint ~A...~%" path)
+      (load path))))
+
+(load-manifest)
 
 (defun render-canvas () 
   (begin-drawing)
   (draw-canvas 0 0)
   (end-drawing)
   )
-
-; To preven double buffering problems we actually draw to a textute (defined as global in bindings.c)
-; This texture is called canvas, and to use it seamlessly, before each execution of draw we:
-  ; Load the texture
-  ; Draw onto it with out drawing functions
-  ; Close the texture
-  ; Render the texture
-
-; Related to this, the function for "create-canvas" in library.lisp takes care of both creating the actual window, but also creating the canvas texture of that same size
 
 (defun run-engine ()
   (setup)

@@ -10,9 +10,20 @@
   (setf *height* h)
   )
 
+(defvar *fill-color* #xFFFFFFFF)
+
+(defun fillCol (color)
+  (setf *fill-color* color))
+
 (defun background (color)
   (clear-background color)
 )
+
+(defun rect (x y w h)
+  (draw-rectangle x y w h *fill-color*))
+
+(defun ellipse (x y w h)
+  (draw-ellipse x y (float (/ w 2)) (float (/ h 2)) *fill-color*))
 
 ; Handle the mosue 
 ; We call the update function on the mainloop

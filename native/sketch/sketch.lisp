@@ -1,17 +1,12 @@
-(load "sketch/particle.lisp")
-
-; What i want is to NOT do it like this, but instead use the manifest method
-; Remember that all paths are relative to the build script working directory
-; Meaning it is very likely "native"
-
-
 (defun setup ()
   (create_canvas 600 600 "Improved Sketch")
+  (initialize-ui)
   )
 
 
 (defun draw ()
   (background #x000000FF)
+  (update-ui)
 
   (spawn-particle *mousex* *mousey*)
   
